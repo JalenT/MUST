@@ -1,0 +1,6 @@
+# Sublime Project Files
+*.sublime-workspace
+*.sublime-project
+
+# Preprocessed files for my testing
+*.i
