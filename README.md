@@ -1,10 +1,10 @@
 # MUST - Mostly Used for Saving Time
 
 ## Table of Contents
-* [Overview](#user-content-overview)
-* [Motivation](#user-content-motivation)
-* [Usage](#user-content-usage)
-* [Examples](#user-content-examples)
+* [Overview](#overview)
+* [Motivation](#motivation)
+* [Usage](#usage)
+* [Examples](#examples)
 
 ## Overview
 [Back to Top](#)
