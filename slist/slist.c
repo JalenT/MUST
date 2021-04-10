@@ -12,19 +12,6 @@ extern "C" {
 
 #include "slist.h"
 
-/* Defining Types */
-struct must_slist(SUFFIX)
-{
-	struct must_slist_node(SUFFIX) *head;
-	size_t length;
-};
-
-struct must_slist_node(SUFFIX)
-{
-	TYPE data;
-	struct must_slist_node(SUFFIX) *next;
-};
-
 /* Allocating memory for types */
 must_slist(SUFFIX) *must_slist_new(SUFFIX)(void)
 {

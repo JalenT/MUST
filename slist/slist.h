@@ -19,6 +19,19 @@ extern "C" {
 typedef struct must_slist_node(SUFFIX) must_slist_node(SUFFIX);
 typedef struct must_slist(SUFFIX) must_slist(SUFFIX);
 
+/* Defining Types */
+struct must_slist(SUFFIX)
+{
+	struct must_slist_node(SUFFIX) *head;
+	size_t length;
+};
+
+struct must_slist_node(SUFFIX)
+{
+	TYPE data;
+	struct must_slist_node(SUFFIX) *next;
+};
+
 /* Allocating memory for types */
 #define must_slist_new(SUFFIX)	    MUST__DEF3(slist, new, SUFFIX)
 #define must_slist_node_new(SUFFIX) MUST__DEF3(slist_node, new, SUFFIX)
