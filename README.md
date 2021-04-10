@@ -10,6 +10,7 @@
 [Back to Top](#)
 
 This repository is a collection of generic data structures in the C programming language.
+The repository is C11 compliant, and does every attempt to be cross-platform.
 
 This is under the MIT License. Feel free to use this repository wherever you desire.
 

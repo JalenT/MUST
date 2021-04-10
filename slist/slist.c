@@ -9,6 +9,7 @@ extern "C" {
 #endif
 
 #include <stdlib.h> /* malloc & free */
+#include <assert.h> /* static_assert */
 
 #include "slist.h"
 
@@ -39,6 +40,42 @@ void must_slist_node_free(SUFFIX)(must_slist_node(SUFFIX) *node)
 {
 	free(node);
 }
+
+/* Inserting nodes into the singly linked list */
+void must_slist_put_front(SUFFIX)(must_slist(SUFFIX) *slist, must_slist_node(SUFFIX) *node)
+{
+	static_assert(slist == NULL, "1st parameter cannot be null");
+	static_assert(node == NULL, "2nd parameter cannot be null");
+
+	node->next = slist->head;
+	slist->head = node->next;
+	++slist->length;
+}
+
+void must_slist_put_after(SUFFIX)(must_slist(SUFFIX) *slist, must_slist_node(SUFFIX) *node_before, must_slist_node(SUFFIX) *node_after)
+{
+	static_assert(slist == NULL, "1st parameter cannnot be null");
+	static_assert(node_before == NULL, "2nd parameter cannot be null");
+	static_assert(node_after == NULL, "3rd parameter cannot be null");
+
+	node_after->next = node_before->next;
+	node_before->next = node_after;
+	++slist->length;
+}
+
+void must_slist_put(SUFFIX)(must_slist(SUFFIX) *slist, size_t index, must_slist_node(SUFFIX) *node)
+{
+	static_assert(slist == NULL, "1st parameter cannot be null");
+	static_assert(index > slist->length, "Index is out of bounds");
+	static_assert(node == NULL, "3rd parameter cannot be null");
+
+	if (index == 0) {
+		must_slist_put_front(SUFFIX)(slist, node);
+	} else {
+		must_slist_put_after(SUFFIX)(slist, must_slist_get_node(SUFFIX)(index), node);
+	}
+}
+
 
 #ifdef __cplusplus
 }
