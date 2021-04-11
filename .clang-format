@@ -1,11 +1,11 @@
 ---
 BasedOnStyle: LLVM
 
-# C89, closest thing in clang format
+# C11, I think this is closest maybe.
 Language: Cpp
 Standard: Cpp11
 
-AlignAfterOpenBracket: Align
+AlignAfterOpenBracket: true
 AlignConsecutiveAssignments: true
 AlignConsecutiveBitFields: true
 AlignConsecutiveDeclarations: false
@@ -44,14 +44,13 @@ NamespaceIndentation: All
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
 
-PenaltyBreakAssignment: 1
-PenaltyBreakBeforeFirstCallParameter: 1000000
-PenaltyBreakComment: 300
-PenaltyBreakFirstLessLess: 120
-PenaltyBreakString: 1000
-PenaltyBreakTemplateDeclaration: 100000
-PenaltyExcessCharacter: 1000000
-PenaltyReturnTypeOnItsOwnLine: 2
+PenaltyBreakAssignment: 10
+PenaltyBreakBeforeFirstCallParameter: 1
+PenaltyBreakComment: 10
+PenaltyBreakFirstLessLess: 0
+PenaltyBreakString: 10
+PenaltyExcessCharacter: 100
+PenaltyReturnTypeOnItsOwnLine: 0
 
 PointerAlignment: Right
 
@@ -78,5 +77,19 @@ UseTab: Always
 TypenameMacros: [
   "must_slist",
   "must_slist_node"
+]
+
+WhitespaceSensitiveMacros: [
+  "must_slist",
+  "must_slist_node",
+  "must_slist_new",
+  "must_slist_node_new",
+  "must_slist_free",
+  "must_slist_node_free",
+  "must_slist_get_node",
+  "must_slist_find_node",
+  "must_slist_put_front",
+  "must_slist_put_after",
+  "must_slist_put"
 ]
 ...

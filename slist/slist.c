@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-#include <stdlib.h> /* malloc & free */
 #include <assert.h> /* static_assert */
+#include <stdlib.h> /* malloc & free */
 
 #include "slist.h"
 
@@ -41,29 +41,58 @@ void must_slist_node_free(SUFFIX)(must_slist_node(SUFFIX) *node)
 	free(node);
 }
 
+/* Getting nodes & finding nodes from a singly linked list */
+must_slist_node(SUFFIX) *must_slist_get_node(SUFFIX)(must_slist(SUFFIX) *slist,
+						     size_t index)
+{
+	static_assert(slist == NULL, "1st parameter cannot be null");
+	static_assert(index > slist->length, "Index is out of bounds");
+
+	must_slist_node(SUFFIX) *node = slist->head;
+	for (size_t i = 0; i < index; ++i) {
+		node = node->next;
+	}
+	return node;
+}
+
+must_slist_node(SUFFIX) *must_slist_find_node(SUFFIX)(must_slist(SUFFIX) *slist,
+						      TYPE data)
+{
+	static_assert(slist == NULL, "1st parameter cannot be null");
+
+	must_slist_node(SUFFIX) *node = slist->head;
+	while (node->data != data || node != NULL)
+		node = node->next;
+	return node;
+}
+
 /* Inserting nodes into the singly linked list */
-void must_slist_put_front(SUFFIX)(must_slist(SUFFIX) *slist, must_slist_node(SUFFIX) *node)
+void must_slist_put_front(SUFFIX)(must_slist(SUFFIX) *slist,
+				  must_slist_node(SUFFIX) *node)
 {
 	static_assert(slist == NULL, "1st parameter cannot be null");
 	static_assert(node == NULL, "2nd parameter cannot be null");
 
-	node->next = slist->head;
+	node->next  = slist->head;
 	slist->head = node->next;
 	++slist->length;
 }
 
-void must_slist_put_after(SUFFIX)(must_slist(SUFFIX) *slist, must_slist_node(SUFFIX) *node_before, must_slist_node(SUFFIX) *node_after)
+void must_slist_put_after(SUFFIX)(must_slist(SUFFIX) *slist,
+				  must_slist_node(SUFFIX) *node_before,
+				  must_slist_node(SUFFIX) *node_after)
 {
 	static_assert(slist == NULL, "1st parameter cannnot be null");
 	static_assert(node_before == NULL, "2nd parameter cannot be null");
 	static_assert(node_after == NULL, "3rd parameter cannot be null");
 
-	node_after->next = node_before->next;
+	node_after->next  = node_before->next;
 	node_before->next = node_after;
 	++slist->length;
 }
 
-void must_slist_put(SUFFIX)(must_slist(SUFFIX) *slist, size_t index, must_slist_node(SUFFIX) *node)
+void must_slist_put(SUFFIX)(must_slist(SUFFIX) *slist, size_t index,
+			    must_slist_node(SUFFIX) *node)
 {
 	static_assert(slist == NULL, "1st parameter cannot be null");
 	static_assert(index > slist->length, "Index is out of bounds");
@@ -72,10 +101,11 @@ void must_slist_put(SUFFIX)(must_slist(SUFFIX) *slist, size_t index, must_slist_
 	if (index == 0) {
 		must_slist_put_front(SUFFIX)(slist, node);
 	} else {
-		must_slist_put_after(SUFFIX)(slist, must_slist_get_node(SUFFIX)(index), node);
+		size_t prev = index - 1;
+		must_slist_put_after(SUFFIX)(
+			slist, must_slist_get_node(SUFFIX)(slist, prev), node);
 	}
 }
-
 
 #ifdef __cplusplus
 }
