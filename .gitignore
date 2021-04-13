@@ -2,5 +2,8 @@
 *.sublime-workspace
 *.sublime-project
 
-# Preprocessed files for my testing
-*.i
+# For personal testing only
+*/example/*.i
+*/example/*.o
+*.exe
+*/example/obj

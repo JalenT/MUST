@@ -17,13 +17,13 @@ AlignTrailingComments: false
 AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
 
-AllowShortBlocksOnASingleLine: Empty
+AllowShortBlocksOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortEnumsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: Empty
-AllowShortIfStatementsOnASingleLine: false
-AllowShortLambdasOnASingleLine: Empty
-AllowShortLoopsOnASingleLine: false
+AllowShortEnumsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLambdasOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
 
 AlwaysBreakAfterReturnType: None
 BinPackArguments: true
