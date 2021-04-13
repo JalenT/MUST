@@ -39,6 +39,10 @@ There are advantages & disadvantages to both of these options, which I'll share 
 
 Because I want type safety & simplicity in my data structures, I'm using macros to implement the data structures.
 
+### How To Include
+To use this in your project, you should copy the entire folder, except for examples.
+My recommendation is to compile it into an object file, or a static library, so you don't need all of the source code. The Makefile in examples is a good place to learn how to compile it.
+
 ### How To Use
 [Back to Top](#)
 
