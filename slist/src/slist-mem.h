@@ -8,29 +8,33 @@
 extern "C" {
 #endif
 
-/* Allocating memory for types */
-#define must_slist_malloc(SUFFIX) MUST__DEF3(slist, malloc, SUFFIX)
-#define must_slist_free(SUFFIX)   MUST__DEF3(slist, free, SUFFIX)
+/*
+ * create()/destroy()
+ * new()/delete()
+ */
 
-#define must_slist_new(SUFFIX)    MUST__DEF3(slist, new, SUFFIX)
+#define must_slist_create(SUFFIX)  MUST__DEF3(slist, create, SUFFIX)
+#define must_slist_destroy(SUFFIX) MUST__DEF3(slist, destroy, SUFFIX)
+
+#define must_slist_new(SUFFIX)	  MUST__DEF3(slist, new, SUFFIX)
 #define must_slist_delete(SUFFIX) MUST__DEF3(slist, delete, SUFFIX)
 
-#define must_slist_node_malloc(SUFFIX) MUST__DEF3(slist_node, malloc, SUFFIX)
-#define must_slist_node_free(SUFFIX)   MUST__DEF3(slist_node, free, SUFFIX)
+#define must_slist_node_create(SUFFIX)	MUST__DEF3(slist_node, create, SUFFIX)
+#define must_slist_node_destroy(SUFFIX) MUST__DEF3(slist_node, destroy, SUFFIX)
 
 #define must_slist_node_new(SUFFIX)    MUST__DEF3(slist_node, new, SUFFIX)
 #define must_slist_node_delete(SUFFIX) MUST__DEF3(slist_node, delete, SUFFIX)
 
-must_slist(SUFFIX) *must_slist_malloc(SUFFIX)(void);
-void must_slist_free(SUFFIX)(must_slist(SUFFIX) *slist);
+void must_slist_create(SUFFIX)(must_slist(SUFFIX) *slist);
+void must_slist_destroy(SUFFIX)(must_slist(SUFFIX) **slist);
 
-must_slist(SUFFIX) *must_slist_new(SUFFIX)(void);
+void must_slist_new(SUFFIX)(must_slist(SUFFIX) *slist);
 void must_slist_delete(SUFFIX)(must_slist(SUFFIX) **slist);
 
-must_slist_node(SUFFIX) *must_slist_node_malloc(SUFFIX)(void);
-void must_slist_node_free(SUFFIX)(must_slist_node(SUFFIX) *node);
+void must_slist_node_create(SUFFIX)(must_slist_node(SUFFIX) *node);
+void must_slist_node_destroy(SUFFIX)(must_slist_node(SUFFIX) **node);
 
-must_slist_node(SUFFIX) *must_slist_node_new(SUFFIX)(TYPE data);
+void must_slist_node_new(SUFFIX)(must_slist_node(SUFFIX) *node, TYPE data);
 void must_slist_node_delete(SUFFIX)(must_slist_node(SUFFIX) **node);
 
 #ifdef __cplusplus

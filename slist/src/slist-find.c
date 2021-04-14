@@ -4,8 +4,8 @@
 #include <assert.h> /* assert() */
 #include <stddef.h> /* size_t & NULL */
 
-#include "slist-types.h"
 #include "slist-find.h"
+#include "slist-types.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,8 +31,7 @@ must_slist_node(SUFFIX) *must_slist_find_node(SUFFIX)(must_slist(SUFFIX) *slist,
 	assert(slist != NULL);
 
 	must_slist_node(SUFFIX) *node = slist->head;
-	while (node->data != data || node != NULL)
-		node = node->next;
+	while (node->data != data || node != NULL) node = node->next;
 	return node;
 }
 

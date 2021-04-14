@@ -1,78 +1,82 @@
 #ifndef MUST__SLIST_MEM_C
 #define MUST__SLIST_MEM_C
 
-#include <stdlib.h> /* malloc */
+#include <assert.h>
 #include <stddef.h>
+#include <stdlib.h> /* malloc */
 
-#include "slist-types.h"
 #include "slist-mem.h"
+#include "slist-types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /*
- * Functions for allocation & deallocation:
- *
- * new/delete
- * malloc/free
+ * create()/destroy()
+ * new()/delete()
  */
 
-must_slist(SUFFIX) *must_slist_malloc(SUFFIX)(void)
+void must_slist_create(SUFFIX)(must_slist(SUFFIX) *slist)
 {
-	return malloc(sizeof(must_slist(SUFFIX)));
+	slist = malloc(sizeof(must_slist(SUFFIX)));
+	slist->head = NULL;
+	slist->length = 0;
 }
 
-void must_slist_free(SUFFIX)(must_slist(SUFFIX) *slist)
+void must_slist_destroy(SUFFIX)(must_slist(SUFFIX) **slist)
 {
-	free(slist);
+	assert(slist != NULL);
+	free(*slist);
+	*slist = NULL;
 }
 
-must_slist(SUFFIX) *must_slist_new(SUFFIX)(void)
+void must_slist_new(SUFFIX)(must_slist(SUFFIX) *slist)
 {
-	/* Zero initialization is usually all zeroes */
-	return calloc(sizeof(must_slist(SUFFIX)));
+	must_slist_create(SUFFIX)(slist);
 }
 
-void must_slist_delete(SUFFIX)(must_slist(SUFFIX) **slist_double_ptr)
+void must_slist_delete(SUFFIX)(must_slist(SUFFIX) **slist)
 {
-	if (slist_double_ptr == NULL) return;
+	assert(slist != NULL);
 
-	must_slist(SUFFIX) *slist = *slist_double_ptr;
-	must_slist_node(SUFFIX) *to_delete;
-	while (slist->head != NULL) {
-		to_delete = slist->head;
-		slist->head = to_delete->next;
-		must_slist_node_free(SUFFIX)(to_delete);
+	if (*slist != NULL && (*slist)->head != NULL) {
+		must_slist(SUFFIX) *head = (*slist)->head;
+		must_slist(SUFFIX) *to_delete;
+		while (head->next != NULL) {
+			to_delete = head->next;
+			head->next = to_delete->next;
+			must_slist_node_destroy(SUFFIX)(&to_delete);
+		}
+		must_slist_node_destroy(&head);
 	}
 
-	free(*slist_double_ptr);
-	*slist_double_ptr = NULL;
+	must_slist_destroy(slist);
 }
 
-must_slist_node(SUFFIX) *must_slist_node_malloc(SUFFIX)(void)
+void must_slist_node_create(SUFFIX)(must_slist_node(SUFFIX) *node)
 {
-	return malloc(sizeof(must_slist_node(SUFFIX)));
+	node = malloc(sizeof(must_slist_node(SUFFIX)));
+	node->data = 0; /* Sets data to it's zero-value */
+	node->next = NULL;
 }
 
-void must_slist_node_free(SUFFIX)(must_slist_node(SUFFIX) *node)
+void must_slist_node_destroy(SUFFIX)(must_slist_node(SUFFIX) **node)
 {
-	free(node);
+	free(*node);
+	*node = NULL;
 }
 
-must_slist_node(SUFFIX) *must_slist_node_new(SUFFIX)(TYPE data)
+void must_slist_node_new(SUFFIX)(must_slist_node(SUFFIX) *node, TYPE data)
 {
-	must_slist_node(SUFFIX) *node = must_slist_node_malloc(SUFFIX)();
+	node = malloc(sizeof(must_slist_node(SUFFIX)));
 	node->data = data;
 	node->next = NULL;
-	return node;
 }
 
 void must_slist_node_delete(SUFFIX)(must_slist_node(SUFFIX) **node)
 {
-	if (node == NULL) return;
-
-	free(*node);
+	must_slist_node_destroy(*node);
 	*node = NULL;
 }
 

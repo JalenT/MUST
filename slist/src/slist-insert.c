@@ -19,7 +19,7 @@ void must_slist_put_front(SUFFIX)(must_slist(SUFFIX) *slist,
 	assert(slist != NULL);
 	assert(node != NULL);
 
-	node->next  = slist->head;
+	node->next = slist->head;
 	slist->head = node;
 	++slist->length;
 }
@@ -32,7 +32,7 @@ void must_slist_put_after(SUFFIX)(must_slist(SUFFIX) *slist,
 	assert(node_before != NULL);
 	assert(node_after != NULL);
 
-	node_after->next  = node_before->next;
+	node_after->next = node_before->next;
 	node_before->next = node_after;
 	++slist->length;
 }
