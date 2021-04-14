@@ -20,8 +20,7 @@ extern "C" {
 
 must_slist(SUFFIX) *must_slist_malloc(SUFFIX)(void)
 {
-	must_slist(SUFFIX) *slist = malloc(sizeof(must_slist(SUFFIX)));
-	return slist;
+	return malloc(sizeof(must_slist(SUFFIX)));
 }
 
 void must_slist_free(SUFFIX)(must_slist(SUFFIX) *slist)
@@ -31,10 +30,8 @@ void must_slist_free(SUFFIX)(must_slist(SUFFIX) *slist)
 
 must_slist(SUFFIX) *must_slist_new(SUFFIX)(void)
 {
-	must_slist(SUFFIX) *slist = must_slist_malloc(SUFFIX)();
-	slist->head = NULL;
-	slist->length = 0;
-	return slist;
+	/* Zero initialization is usually all zeroes */
+	return calloc(sizeof(must_slist(SUFFIX)));
 }
 
 void must_slist_delete(SUFFIX)(must_slist(SUFFIX) **slist_double_ptr)
@@ -55,8 +52,7 @@ void must_slist_delete(SUFFIX)(must_slist(SUFFIX) **slist_double_ptr)
 
 must_slist_node(SUFFIX) *must_slist_node_malloc(SUFFIX)(void)
 {
-	must_slist_node(SUFFIX) *node = malloc(sizeof(must_slist_node(SUFFIX)));
-	return node;
+	return malloc(sizeof(must_slist_node(SUFFIX)));
 }
 
 void must_slist_node_free(SUFFIX)(must_slist_node(SUFFIX) *node)
