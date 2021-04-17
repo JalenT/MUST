@@ -56,11 +56,11 @@ And both of these would be the same.
 
 Another example, you could allocate the singly linked list shown above like this.
 ```C
-slist = must_slist_node_new(int)();
+must_slist_node_new(int)(&slist);
 ```
 Or like this.
 ```C
-slist = must_slist_node_new_int();
+must_slist_node_new_int(&slist);
 ```
 And other functions are called similar to the one above.
 
