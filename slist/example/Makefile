@@ -1,9 +1,9 @@
 COMPILER  := clang
 FORMATTER := clang-format
 
-PREPROCESSOR_FLAGS = -I ../include -I ../src -I ../../common
-COMPILER_FLAGS = -Werror -Wpedantic -std=c11 -pedantic -g
-LINKER_FLAGS   = -g
+PREPROCESSOR_FLAGS = -I .. -I ../../common
+COMPILER_FLAGS = -Werror -Wpedantic -std=c11 -pedantic
+LINKER_FLAGS   =
 
 OBJ_DIR := obj
 
@@ -21,10 +21,9 @@ help:
 	@echo 'Type "make clean" to clean all ouput.'
 	@echo 'Type "make help" or "make" for this message.'
 
-preprocess : slist-str.h
+preprocess : slist-int.h
 	$(COMPILER) $^ -E -o slist-str.i $(PREPROCESSOR_FLAGS)
 	$(FORMATTER) slist-str.i --assume-filename=.c -i
-
 
 compile: test.exe
 
@@ -38,5 +37,5 @@ clean:
 $(OBJ_DIR)/%.o: %.c
 	$(COMPILER) $< -o $@ $(PREPROCESSOR_FLAGS) $(COMPILER_FLAGS) -c
 
-test.exe: $(OBJ_DIR)/test.o $(OBJ_DIR)/slist-str.o
+test.exe: $(OBJ_DIR)/test.o $(OBJ_DIR)/slist-num.o
 	$(COMPILER) $^ -o test.exe $(LINKER_FLAGS)

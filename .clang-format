@@ -17,7 +17,7 @@ AlignTrailingComments: false
 AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
 
-AllowShortBlocksOnASingleLine: true
+AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortEnumsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: false

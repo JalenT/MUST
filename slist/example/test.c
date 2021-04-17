@@ -4,27 +4,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "slist-str.h"
+#include "slist-num.h"
 
 int main(void)
 {
 	puts("\n** Allocating memory for the slist. **");
-	must_slist(str) *slist = must_slist_new(str)();
+	must_slist_num *slist;
+	must_slist_new(num)(&slist);
 	printf("slist = %p\n", slist);
 	assert(slist != NULL);
 
 	puts("\n** Allocating memeory for the nodes. **");
-	must_slist_node(str) *n1 = must_slist_node_new(str)("a");
-	must_slist_node(str) *n2 = must_slist_node_new(str)("b");
-	must_slist_node(str) *n3 = must_slist_node_new(str)("c");
-	must_slist_node(str) *n4 = must_slist_node_new(str)("d");
-	must_slist_node(str) *n5 = must_slist_node_new(str)("e");
+	must_slist_node(num) *n1;
+	must_slist_node(num) *n2;
+	must_slist_node(num) *n3;
+	must_slist_node(num) *n4;
+	must_slist_node(num) *n5;
 
-	printf("n1->data = %s\n", n1->data);
-	printf("n2->data = %s\n", n2->data);
-	printf("n3->data = %s\n", n3->data);
-	printf("n4->data = %s\n", n4->data);
-	printf("n5->data = %s\n", n5->data);
+	must_slist_node_new_num(&n1, 1);
+	must_slist_node_new_num(&n2, 2);
+	must_slist_node_new_num(&n3, 3);
+	must_slist_node_new_num(&n4, 4);
+	must_slist_node_new_num(&n5, 5);
+
+	printf("n1 = %p\n", n1);
+	printf("n2 = %p\n", n2);
+	printf("n3 = %p\n", n3);
+	printf("n4 = %p\n", n4);
+	printf("n5 = %p\n", n5);
 
 	assert(n1 != NULL);
 	assert(n2 != NULL);
@@ -34,27 +41,27 @@ int main(void)
 
 	puts("\n** Adding nodes into the slist. **");
 
-	must_slist_put(str)(slist, 0, n1);
-	must_slist_put(str)(slist, 1, n2);
-	must_slist_put(str)(slist, 2, n3);
-	must_slist_put(str)(slist, 3, n4);
-	must_slist_put(str)(slist, 4, n5);
+	must_slist_put(num)(slist, 0, n1);
+	must_slist_put(num)(slist, 1, n2);
+	must_slist_put(num)(slist, 2, n3);
+	must_slist_put(num)(slist, 3, n4);
+	must_slist_put(num)(slist, 4, n5);
 
 	printf("slist->length = %llu\n", slist->length);
 	assert(slist->length == 5);
 
 	puts("\n** Getting the 3rd node in the list. **");
 
-	must_slist_node(str) *my_node = must_slist_get_node(str)(slist, 2);
-	printf("my_node->data = %s\n", my_node->data);
+	must_slist_node_num *my_node = must_slist_get_node_num(slist, 2);
+	printf("my_node->data = %d\n", my_node->data);
 	assert(my_node == n3);
 
 	puts("\n** Removing the tail from the list **");
 
-	my_node = my_node->next;
-	must_slist_node(str) *to_delete = my_node->next;
-	my_node->next = NULL;
-	must_slist_node_delete(str)(&to_delete);
+	my_node			       = my_node->next;
+	must_slist_node_num *to_delete = my_node->next;
+	my_node->next		       = NULL;
+	must_slist_node_delete(num)(&to_delete);
 
 	printf("to_delete = %p\n", to_delete);
 	assert(to_delete == NULL);
@@ -63,7 +70,10 @@ int main(void)
 	assert(my_node->next == NULL);
 
 	puts("\n** Freeing the entire list **");
-	must_slist_free(str)(slist);
+	must_slist_delete_(num)(&slist);
 
-	getchar();
+	printf("slist = %p\n", slist);
+	assert(slist == NULL);
+
+	puts("\n** It worked with no problems!!! **");
 }

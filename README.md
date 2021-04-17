@@ -68,4 +68,4 @@ And other functions are called similar to the one above.
 [Back to Top](#)
 
 Also, in all of the data structures, there is an example folder, with a Makefile and example source code.
-Everything can be compiled into object files, and static libraries, will shared object support on Windows coming soon.
+Everything can be compiled into object files, and static libraries, will dll file support on Windows coming soon.
