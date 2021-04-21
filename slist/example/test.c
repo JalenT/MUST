@@ -41,11 +41,11 @@ int main(void)
 
 	puts("\n** Adding nodes into the slist. **");
 
-	must_slist_put(num)(slist, 0, n1);
-	must_slist_put(num)(slist, 1, n2);
-	must_slist_put(num)(slist, 2, n3);
-	must_slist_put(num)(slist, 3, n4);
-	must_slist_put(num)(slist, 4, n5);
+	must_slist_insert(num)(slist, 0, n1);
+	must_slist_insert(num)(slist, 1, n2);
+	must_slist_insert(num)(slist, 2, n3);
+	must_slist_insert(num)(slist, 3, n4);
+	must_slist_insert(num)(slist, 4, n5);
 
 	printf("slist->length = %llu\n", slist->length);
 	assert(slist->length == 5);
@@ -70,7 +70,7 @@ int main(void)
 	assert(my_node->next == NULL);
 
 	puts("\n** Freeing the entire list **");
-	must_slist_delete_(num)(&slist);
+	must_slist_delete(num)(&slist);
 
 	printf("slist = %p\n", slist);
 	assert(slist == NULL);

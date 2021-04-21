@@ -1,37 +1,13 @@
 ---
 BasedOnStyle: LLVM
 
-# C11, I think this is closest maybe.
-Language: Cpp
-Standard: Cpp11
-
-AlignAfterOpenBracket: true
-AlignConsecutiveAssignments: true
 AlignConsecutiveBitFields: true
-AlignConsecutiveDeclarations: false
 AlignConsecutiveMacros: true
 AlignEscapedNewlines: Left
-AlignOperands: true
-AlignTrailingComments: false
 
-AllowAllArgumentsOnNextLine: false
-AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortIfStatementsOnASingleLine: false
 
-AllowShortBlocksOnASingleLine: false
-AllowShortCaseLabelsOnASingleLine: false
-AllowShortEnumsOnASingleLine: true
-AllowShortFunctionsOnASingleLine: false
-AllowShortIfStatementsOnASingleLine: true
-AllowShortLambdasOnASingleLine: true
-AllowShortLoopsOnASingleLine: true
-
-AlwaysBreakAfterReturnType: None
-BinPackArguments: true
-BinPackParameters: true
-
-BreakBeforeBinaryOperators: All
 BreakBeforeBraces: Linux
-BreakBeforeTernaryOperators: true
 
 ColumnLimit: 80
 ContinuationIndentWidth: 8
@@ -39,36 +15,11 @@ ContinuationIndentWidth: 8
 IndentCaseLabels: false
 IndentGotoLabels: true
 IndentWidth: 8
-NamespaceIndentation: All
 
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
 
-PenaltyBreakAssignment: 10
-PenaltyBreakBeforeFirstCallParameter: 1
-PenaltyBreakComment: 10
-PenaltyBreakFirstLessLess: 0
-PenaltyBreakString: 10
-PenaltyExcessCharacter: 100
-PenaltyReturnTypeOnItsOwnLine: 0
-
 PointerAlignment: Right
-
-SpaceAfterCStyleCast: true
-SpaceAfterLogicalNot: false
-SpaceAfterTemplateKeyword: true
-SpaceBeforeAssignmentOperators: true
-SpaceBeforeCpp11BracedList: true
-SpaceBeforeParens: ControlStatements
-SpaceBeforeRangeBasedForLoopColon: true
-SpaceBeforeSquareBrackets: false
-SpaceInEmptyBlock: false
-SpaceInEmptyParentheses: false
-SpacesInAngles: false
-SpacesInCStyleCastParentheses: false
-SpacesInConditionalStatement: false
-SpacesInParentheses: false
-SpacesInSquareBrackets: false
 
 TabWidth: 8
 UseCRLF: false
@@ -77,19 +28,5 @@ UseTab: Always
 TypenameMacros: [
   "must_slist",
   "must_slist_node"
-]
-
-WhitespaceSensitiveMacros: [
-  "must_slist",
-  "must_slist_node",
-  "must_slist_new",
-  "must_slist_node_new",
-  "must_slist_free",
-  "must_slist_node_free",
-  "must_slist_get_node",
-  "must_slist_find_node",
-  "must_slist_put_front",
-  "must_slist_put_after",
-  "must_slist_put"
 ]
 ...

@@ -2,7 +2,7 @@ COMPILER  := clang
 FORMATTER := clang-format
 
 PREPROCESSOR_FLAGS = -I .. -I ../../common
-COMPILER_FLAGS = -Werror -Wpedantic -std=c11 -pedantic
+COMPILER_FLAGS = -Werror -Wpedantic -std=c99 -pedantic
 LINKER_FLAGS   =
 
 OBJ_DIR := obj
